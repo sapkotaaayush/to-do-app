@@ -2,13 +2,20 @@ import {createContext, useState, useContext} from "react";
 const TodoContext = createContext();
 
 
-export const TodoProvider = ({children}) => {
+const TodoProvider = ({children}) => {
 
   const initialValue = ["learning react"];
+
   const [todoList, settodoList] = useState(initialValue);
 
+  const getNumberOfTodo = () => todoList.length;
+
+  const contextValue = 
+  {todoList, 
+  getNumberOfTodo,
+  };
   return (
-    <TodoContext.Provider value ={todoList}>
+    <TodoContext.Provider value ={contextValue}>
         {children}
     </TodoContext.Provider>
   )
