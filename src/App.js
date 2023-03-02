@@ -1,32 +1,25 @@
-import {useState , useEffect } from "react";
-import getCountry from "./services/getCountry";
+import TodoProvider from "./providers/TodoProvider";
+import TodoList from './components/TodoList';
 
 function App() 
-{
-const [country, setCountry] = useState("Nepal");
+  {
+    return (
+      <div className="App" style = 
+      {{
+        display: "flex",
+        justifyContent: "center",
+        alignText: "center",
+      }}>
+ <header> TO-DO App</header>
 
-useEffect(() => {
-  const result = getCountry("nepal")
-  .then((data) => {
-      console.log(data);
-    })
-
-    .catch((error) => {
-      console.log(error);
-    })
- 
-
-
-
-  console.log(result)
-}, []);
-  
+ <TodoProvider>
+ <TodoList/>
+ </TodoProvider>
 
 
-return (
-  <button>{country !== "Nepal" ? country[0].name.common :"Nepal"}</button>
-);
-
-} 
+ </div>
+    )
+  }
 
 export default App;
+
