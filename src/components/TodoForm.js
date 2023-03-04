@@ -1,10 +1,32 @@
+import { useState } from "react";
 import { useTodoContext } from "../providers/TodoProvider";
+
+
 const TodoForm = () => {
-  const {getNumberOfTodo}= useTodoContext();
+
+
+  const {getNumberOfTodo, addTodo}= useTodoContext();
+
+  const [todoItem, setTodoItem] = useState("");
+
+const onChangeFunction = (event) => {
+  setTodoItem(event.target.value) };
+
+
+    const handleSubmit = (event) => {
+      event.preventDefault(); 
+      addTodo(todoItem)
+      if(!todoItem) {
+        return;
+      }
+    };
+
+
   return(
-    <form>
+    <form onSubmit={handleSubmit}>
       <h3> Number of todos: {getNumberOfTodo()}</h3>
-      { <input type="text" placeholder="write here"/>}
+      { <input 
+      type="text" value={todoItem} placeholder="write here" onChange ={onChangeFunction}/>}
       <button type="submit" >
         submit
       </button>
